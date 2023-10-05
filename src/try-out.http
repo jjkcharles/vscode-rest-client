@@ -1,0 +1,70 @@
+
+# File Variables #
+@baseUrl = api.restful-api.dev
+
+###
+
+# List all objects - HTTP Style
+GET /objects
+HOST: {{baseUrl}}
+
+###
+
+# List all objects
+GET https://{{baseUrl}}/objects
+
+###
+
+# List of objects by ids
+// @name allObjects
+GET https://{{baseUrl}}/objects
+    ?id=ff8081818ad150c5018ade970fab1017
+    &id=13
+
+###
+
+# Single object
+GET https://{{baseUrl}}/objects
+    ?id={{allObjects.response.body.$[0].id}}
+//ff8081818ad150c5018ade970fab1017
+
+### 
+
+# Single object
+// @prompt Id Enter the ID value you want to retrieve details for:
+GET https://{{baseUrl}}/objects
+    ?id={{Id}}
+
+###
+
+# Add object
+POST https://{{baseUrl}}/objects
+Content-Type: application/json
+
+{
+   "name": "PineApple PacBook Bro",
+   "data": {
+      "year": 2023,
+      "price": 125,
+      "CPU model": "AMD Cryzen - ARM Processor",
+      "Hard disk size": "5 TB SSD"
+   }
+}
+
+###
+
+# Update Object
+PUT https://{{baseUrl}}/{{newObject.response.body.$[0].id}}
+Content-Type: application/json
+
+{
+    "name": "PineApple PacBook Bro",
+    "data": {
+        "year": 2023,
+        "price": 128,
+        "CPU model": "AMD Cryzen - ARM Processor",
+        "Hard disk size": "5 TB SSD"
+    }
+}
+
+###
